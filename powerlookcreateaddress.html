@@ -1,0 +1,24 @@
+<template>
+    <div class="slds-box slds-box-small  slds-align_absolute-center slds-p-around_large">
+        <form>
+        
+                <lightning-textarea label="Enter Address" value={address} data-key = "address" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-textarea>
+                <br/>
+           
+                <lightning-input label="Shipping City"  value={city} data-key = "city" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			    <br/>
+           
+                <lightning-input label="State"  value={state} data-key = "state" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+                <br/>
+          
+                <lightning-input label="Postalcode"  value={postalcode} data-key = "postalcode" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			<br/>
+          
+                <lightning-button label="Add Address" variant="Brand" onclick={handleaddaddress}> </lightning-button>
+           
+          
+        	
+            
+    </form>
+    </div>
+</template>

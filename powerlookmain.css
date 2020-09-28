@@ -1,0 +1,128 @@
+.menufont {
+font-size: 15px;
+font-weight: 600;
+color: black;
+}
+
+.searchwidth {
+    width: 200px;
+}
+
+.roww{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap
+}
+
+.title {
+    font-size: 25px;
+    color: #000;
+    font-weight: 800;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Dropdown Button */
+.dropbtn {
+   
+    color: black;
+    padding: 16px;
+    font-size: 15px;
+font-weight: 600;
+
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {color: red;}
+
+  .detailfont{font-weight: 900;
+  font-size: 17px;}
+
+  .marginalignment{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .paymentalign{
+    margin-left: 0.75rem;
+  }
+  .instagramalign{
+    margin-left: 38rem;
+
+  }
+
+  .wrapper{
+    min-height: 100vh;
+    background: #ccc;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+    background: #999;
+    color: #000; 
+  }
+  .columns{
+    display: flex;
+    flex:1;
+  }
+  .main{
+    flex: 1;
+    order: 2;
+    background: #eee;
+  }
+  .sidebar-first{
+    width: 50%;
+    background: #ccc;
+    order: 1;
+  }
+  .sidebar-second{ 
+    width: 50%;
+    order: 3;
+    background: #ddd;
+  }
+
+  .containerimage {
+    
+    border-radius: 5px;
+    background-color: white;
+    margin:5px;
+    padding: 2px;
+    max-width: 295px;
+    display: flex;
+    
+    
+}

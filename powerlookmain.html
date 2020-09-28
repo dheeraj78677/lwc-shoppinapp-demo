@@ -1,0 +1,466 @@
+<template>
+    <lightning-card>
+			<div class="slds-page-header">
+				<div class="slds-page-header__row">
+				<div class="slds-page-header__col-title">
+				<div class="slds-grid slds-gutters">
+				<div class="slds-col slds-size_3-of-12">
+				<span>
+				<div class="slds-media" onclick={showmainpage}>
+				<div class="slds-media__figure">
+				<span class="slds-icon_container slds-icon-standard-opportunity" title="opportunity">
+				<svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+				<use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#opportunity"></use>
+				</svg>
+				<span class="slds-assistive-text">opportunity</span>
+				</span>
+				</div>
+				<div class="slds-media__body">
+				<div class="slds-page-header__name">
+				<div class="slds-page-header__name-title">
+				<h1>
+				<span class="slds-page-header__title slds-truncate" title="PowerLook">PowerLook</span>
+				</h1>
+				</div>
+				</div>
+				<p class="slds-page-header__name-meta">MEN'S FASHION</p>
+				</div>
+				</div>
+				</span>
+				</div>
+				<div class="slds-col slds-size_6-of-12">
+					<span>
+						<ul class="slds-list_horizontal slds-has-block-links_space">
+							<li>
+								<div class="dropdown">
+									<button class="dropbtn" data-key = "T-Shirts" onclick={ChooseClothing}>T-Shirts</button>
+									<div class="dropdown-content">
+									  <a  data-key = "T-Shirts:Plain" onclick={ChooseClothing}>Plain T-shirts</a>
+									  <a href="#">Printed T-shirts</a>
+									  <a href="#">Hooded T-shirts</a>
+									  <a href="#">Activewear</a>
+									</div>
+								  </div>
+							</li>
+							<li>
+								<div class="dropdown">
+									<button class="dropbtn">Shirts</button>
+									<div class="dropdown-content">
+									  <a href="#">Printed Shirt</a>
+									  <a href="#">Denim</a>
+									</div>
+								  </div>
+							</li>
+							<li>
+								<div class="dropdown">
+									<button class="dropbtn">Bottoms</button>
+									<div class="dropdown-content">
+									  <a href="#">Trackpants</a>
+									  <a href="#">Shorts</a>
+									  <a href="#">Jeans</a>
+									</div>
+								  </div>
+							</li>
+							<li>
+								<div class="dropdown">
+									<button class="dropbtn">Vests</button>
+									
+								  </div>
+							</li>
+							<li>
+								<div class="dropdown">
+									<button class="dropbtn">Jackets</button>
+									<div class="dropdown-content">
+									  <a href="#">Bomber Jacket</a>
+									  <a href="#">Denim Jacket</a>
+									  
+									</div>
+								  </div>
+							</li>
+							<li>
+								<div class="dropdown">
+									<button class="dropbtn">Track-Suits</button>
+								   
+								  </div>
+							</li>
+							</ul>
+
+					</span>
+					</div>
+					<div class="slds-col slds-size_3-of-12" style="margin-top:0.5rem">
+						<!--<span  class="slds-input-has-icon slds-input-has-icon--right">                
+							<lightning-button-icon icon-name="utility:search" variant="bare" onclick={handlesearch}  alternative-text="Search"  class="slds-input__icon "></lightning-button-icon>
+							<input type="search" class="slds-lookup__search-input slds-input searchwidth" placeholder="Search" />
+						</span>-->
+						<lightning-layout  horizontal-align="normal">
+							<lightning-layout-item>
+						<lightning-button label="View Cart/Login" variant="Brand" onclick={handleCart}> </lightning-button>
+						</lightning-layout-item>
+						<lightning-layout-item>
+							<template if:true = {islogin}>
+								<div class="dropdown" style="padding-top:inherit">
+								<button class="dropbtn">{powerlookuser.Name} {powerlookuser.LastName__c}</button>
+								<div class="dropdown-content">
+								  <a data-key = "Edit Profile" onclick={UserInfo}>Edit Profile</a>
+								  <a data-key = "Logout" onclick={UserInfo}>Logout</a>
+								</div>
+							  </div>
+							</template>
+
+						</lightning-layout-item>
+						</lightning-layout>
+						</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+				<!-- Main PAge-->
+				 <template if:true={MainPage}>
+				<div class="slds-box slds-box_x-small slds-text-align_center ">
+					<lightning-carousel>
+						<lightning-carousel-image
+							src = "{powerlookbanner1}"                   
+							href = "javascript:void(0)">
+						</lightning-carousel-image>
+						<lightning-carousel-image
+							src = "{powerlookbanner2}"                    
+							href = "javascript:void(0)">
+						</lightning-carousel-image>
+					  
+					</lightning-carousel>
+				</div>
+
+				<div class="title slds-align_absolute-center">
+						EXPLORE PRODUCTS
+				</div>
+
+				<div class="roww slds-p-left_medium">
+					<template for:each={productlist} for:item="product">
+						
+						<c-powerlook-product-category  key={product.Id} 
+						product={product} 
+						onproductselected ={handleexploringproduct}>
+
+						</c-powerlook-product-category>
+			   </template>
+				</div>
+
+
+				<br/>
+				<div class="title slds-align_absolute-center">
+					BEST SHIRT COLLECTION
+				</div>
+				<div class="roww slds-p-left_medium">
+					<template for:each={shirtlist} for:item="product">
+						<c-powerlookproducttemplate
+							   key={product.Id} 
+							   product={product} 
+							   onproductselected = {showParticularProduct}
+							   >
+						</c-powerlookproducttemplate>
+			   </template>
+				</div>
+				
+				<br/>
+				<div class="title slds-align_absolute-center">
+					BEST T-SHIRT COLLECTION
+				</div>
+				<div class="roww slds-p-left_medium">
+					<template for:each={tshirtlist} for:item="product">
+						<c-powerlookproducttemplate
+							   key={product.Id} 
+							   product={product} 
+							   onproductselected = {showParticularProduct}
+							   >
+						</c-powerlookproducttemplate>
+			   </template>
+				</div>
+
+				<br/>
+				<div class="title slds-align_absolute-center">
+					BEST TRACK SUITS COLLECTION
+				</div>
+				<div class="roww slds-p-left_medium">
+					<template for:each={tracksuitlist} for:item="product">
+						<c-powerlookproducttemplate
+							   key={product.Id} 
+							   product={product} 
+							   onproductselected = {showParticularProduct}
+							   >
+						</c-powerlookproducttemplate>
+			   </template>
+				</div>
+			</template>
+			<!-- Main PAge-->
+				<!-- Individual Product-->
+				<template if:true={ShowProduct}>
+					<div class="wrapper">
+						
+						<section class="content">
+							<div class="columns">
+							<main class="main" >
+								<div class="roww">
+									<span class="containerimage">
+										<img class="product-img" src={Productdeatil.image1__c}></img>
+									</span>
+									<span class="containerimage">
+										<img class="product-img" src={Productdeatil.image2__c}></img>
+									</span>
+									<span class="containerimage">
+										<img class="product-img" src={Productdeatil.image1__c}></img>
+									</span>
+									<span class="containerimage">
+										<img class="product-img" src={Productdeatil.image4__c}></img>
+									</span>
+									
+								</div>
+							</main>
+							<aside class="sidebar-second">
+								<c-product-detail product={Productdeatil}
+								onaddtobag = {handlewishlisht}
+								></c-product-detail>
+							</aside>
+							</div>
+						</section>
+						</div>
+				</template> 
+				<!-- Individual Product-->
+
+				<!-- Productlist-->
+				<template if:true ={ProductListPage}>
+
+					<div class="roww slds-p-left_medium">
+						<template for:each={allproductlist} for:item="product">
+							<c-powerlookproducttemplate
+								   key={product.Id} 
+								   product={product} 
+								   onproductselected = {showParticularProduct}
+								   >
+							</c-powerlookproducttemplate>
+				   </template>
+					</div>
+				</template>
+			<!-- Productlist-->
+			<!--Login Page-->
+		<template if:true={loginPage}>
+		<div class="slds-box slds-box_xx-small  slds-align_absolute-center slds-p-around_large">
+		<form>
+		<div class="slds-align_absolute-center" style="font-size: x-large;font-weight: 700;background: aquamarine;">
+			Login
+		</div>
+		<br/>
+		<lightning-input label="Enter Username" value={Username}  data-key = "Username" onchange = {registervluelogin} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+		<br/>
+		<lightning-input label="Enter Password" type="password" value={Password} data-key = "Password" onchange = {registervluelogin} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+		<br/>
+		<lightning-layout  horizontal-align="space">
+			<lightning-layout-item>
+		<lightning-button label="Login" variant="Brand" onclick={handlelogin}> </lightning-button>
+		</lightning-layout-item>
+		<lightning-layout-item>
+		<lightning-button label="Sign-Up" variant="Neutral" onclick={handleSig}> </lightning-button>
+		</lightning-layout-item>
+		</lightning-layout>
+		<br/>
+		<div class="slds-align_absolute-center" onclick={handleForgotPassword}>
+			Forgotten your Password
+		</div>
+		</form>
+		</div>
+		</template>
+		<!--Login Page-->
+		<!--SignUp  Page-->
+
+		<template if:true={SignUp}>
+			<div class="slds-box slds-box_xx-small  slds-align_absolute-center slds-p-around_large">
+			<form>
+			<div class="slds-align_absolute-center" style="font-size: x-large;font-weight: 700;background: aquamarine;">
+				Register User
+			</div>
+			<br/>
+			<lightning-input label="Name" value={Firstname} data-key = "FirstName" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			<br/>
+			<lightning-input label="Last Name"  value={LastName} data-key = "LastName" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			<br/>
+			<lightning-input label="Email ID"  value={UserEmail} data-key = "Email" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			<br/>
+			<lightning-input label="Phone Number"  value={Contact} data-key = "Contact" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			<br/>
+			<lightning-input label="Password" type="password" value={UserPassword} data-key = "Password" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+			<br/>
+			<lightning-layout  horizontal-align="space">
+				<lightning-layout-item>
+			<lightning-button label="Register" variant="Brand" onclick={handleRegisterUser}> </lightning-button>
+			</lightning-layout-item>
+			<lightning-layout-item>
+				<lightning-button label="Cancel" variant="Neutral" onclick={handleCancel}> </lightning-button>
+				</lightning-layout-item>
+			
+			</lightning-layout>
+			</form>
+			</div>
+			</template>
+		<!--Sign Up Page-->
+		<!--Cart Page-->
+
+			<template if:true={cartPage}>
+
+				<div class="slds-p-around_medium">
+					<template for:each={cartproduct} for:item="product">
+						<c-powerlookcart
+							   key={product.Id} 
+							   product={product} 
+							   oneditproductcart = {handleeditcartproduct}
+							   ondeleteproductcart = {handleremovecart}
+							   
+							   >
+						</c-powerlookcart>
+			   </template>
+				</div>
+				<br>
+			<div class="slds-align_absolute-center" >
+				<lightning-button label="Confirm Order" variant="Brand" onclick={handleConfirmOrder}> </lightning-button>
+			</div>
+			</template>
+		<!--Cart Page-->
+		<!--Select address-->
+			<template if:true={selectaddress}>
+				<template if:true={addresslist}>
+					<div class="roww slds-p-left_medium">
+						<template for:each={addresslist} for:item="product">
+							<c-powerlookaddress
+								   key={product.Id} 
+								   addlist={product} 	
+								   onattachaddresstoorder = {attachaddtoorder}	
+								   oneditaddressdet = {addressedit}	
+								   ondeladdressdet ={addressedit}					   
+								   >
+							</c-powerlookaddress>
+				   </template>
+					</div>
+					<br/>
+                    <div class="slds-align_absolute-center">
+                        <lightning-button label="Add new Address" onclick={handleaddaddressnew}>
+
+                        </lightning-button>
+                    </div>
+
+				</template>
+				<template if:false={addresslist}>
+                    <div class="slds-p-around_medium">
+                       
+                        <br/>
+                        <c-powerlookcreateaddress
+                        user = {powerlookuser} 
+                        onaddaddress ={handleaddaddress}
+                        >
+
+                        </c-powerlookcreateaddress>
+
+                        
+
+                    </div>
+				</template>
+				
+				</template>
+			
+			
+		<!--Select address-->
+		<!--Add address-->
+        <template if:true={newaddress}>
+            <div class="slds-p-around_medium">
+                       
+                <br/>
+                <c-powerlookcreateaddress
+                user = {powerlookuser} 
+                onaddaddress ={handleaddaddress}
+                >
+
+                </c-powerlookcreateaddress>
+
+                
+
+            </div>
+		</template>
+		<!--Add address-->
+
+		<!-- Edit profile-->
+		<template if:true={editprofile}>
+				<c-powerlookeditprofile user = {powerlookuser}
+				oneditprofile = {handleeditprofile}
+				oncanceledit = {handlecanceledit}></c-powerlookeditprofile>
+		</template>
+		<!--edit Profile-->
+		<!-- FORGOT PASSWORD-->
+			<template if:true={resetpassword}>
+				<c-powerlookresetpasswrd
+				user = {powerlookuser} 
+				oncanceledit = {handlecanceledit}
+				onresetpassword = {handleresetpassword}
+				>
+
+				</c-powerlookresetpasswrd>
+			</template>
+		<!-- FORGOT PASSWORD-->
+
+
+				<br/>
+			<div class="slds-box slds-box_x-small slds-p-around_large slds-p-left_large marginalignment">
+				<div class="slds-grid slds-gutters ">
+					<div class="slds-col slds-size_4-of-12">
+						<span class="detailfont">
+							Premium Quality
+						</span>
+							<br/>
+							<span>
+							All the clothing Products are made from 100% premium quality fabric.
+						</span>
+					</div>
+
+					<div class="slds-col slds-size_4-of-12">
+						<span class="detailfont">
+							7 Day Return 
+						</span>
+							<br/>
+							<span>
+							Return on exchange the orders within 7 days of delivery.
+							</span>
+					</div>
+
+					<div class="slds-col slds-size_4-of-12">
+						<span class="detailfont">
+							Secure Payments
+						</span>
+							<br/>
+							<span>
+							Highly secured SSL-Protected Payment Gateway.
+						</span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="slds-box slds-box_x-small slds-p-around_large slds-p-left_large marginalignment">
+				100% Secure Payment
+				<img class="paymentalign" src="https://www.powerlook.in/assets/images/payments-logo.svg"></img>
+
+				<span class="instagramalign">
+					Follow us on:
+					<a href="https://www.facebook.com/dheeraj.singh.50767">
+					<img class="paymentalign" src="https://www.powerlook.in/assets/images/fb-social.svg"></img>
+				</a>
+				<a href="https://www.instagram.com/eons_2404/">
+					<img class="paymentalign" src="https://www.powerlook.in/assets/images/instagram.svg"></img>
+				</a>
+				</span>
+			</div>
+
+
+			<div class="slds-align_absolute-center" style="height:5rem;color:grey">
+				© 2019 www.powerlook.com. All rights reserved.
+			</div>
+
+   
+	</lightning-card>
+</template>

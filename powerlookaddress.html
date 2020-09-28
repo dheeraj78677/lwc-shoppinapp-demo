@@ -1,0 +1,72 @@
+<template>
+    <br/>
+   
+    <div class="slds-box slds-p-around_large">
+        <div class="container">
+            <a onclick={tileClick}>
+                <template if:false={editpage}>
+                   
+                <div class="title">
+                    Address : 
+                </div>
+                <p>{addlist.Shipping_Street__c}</p>
+                <div class="title">
+                    City : 
+                </div>
+                <span>{addlist.Shipping_City__c}</span>
+                <div class="title">
+                    State : 
+                </div>
+                <span>{addlist.Shipping_State__c}</span>
+                <div class="title">
+                    Pincode : 
+                </div>
+                <span>{addlist.Postal_Code__c}</span>
+                <br/>
+                <div class="slds-align_absolute-center">
+                    <lightning-button label="Select address and confirm" variant="Brand" onclick={handlselect}></lightning-button>
+                </div>
+                <br/>
+                <lightning-layout  horizontal-align="space">
+                    <lightning-layout-item>
+                <lightning-button label="Edit" variant="Brand" onclick={handleEdit}> </lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item style="padding-left: 3rem;">
+                   <lightning-button label="Remove" variant="Brand" onclick={handleRemove}> </lightning-button>
+                </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <template if:true={editpage}>
+
+                <form>
+        
+                    <lightning-textarea label="Enter Address" value={address} placeholder= {addlist.Shipping_Street__c} data-key = "address" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-textarea>
+                    
+               
+                    <lightning-input label="Shipping City"  placeholder= {addlist.Shipping_City__c} value={city} data-key = "city" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+                    
+               
+                    <lightning-input label="State" placeholder= {addlist.Shipping_State__c} value={state} data-key = "state" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+                    
+              
+                    <lightning-input label="Postalcode"  placeholder= {addlist.Postal_Code__c} value={postalcode} data-key = "postalcode" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+                
+                  </form>
+                  <br/>
+                
+                <lightning-layout  horizontal-align="normal">
+                    <lightning-layout-item>
+                <lightning-button label="Save" variant="Brand" onclick={handleSave}> </lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item style="padding-left: 3rem;">
+                   <lightning-button label="Cancel" variant="Brand" onclick={handleCancel}> </lightning-button>
+                </lightning-layout-item>
+                </lightning-layout>
+
+            </template>
+                
+            </a>
+        </div>
+    </div>
+    
+</template>

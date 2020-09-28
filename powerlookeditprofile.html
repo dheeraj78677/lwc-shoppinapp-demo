@@ -1,0 +1,28 @@
+<template>
+    <div class="slds-box slds-box_xx-small  slds-align_absolute-center slds-p-around_large">
+        <form>
+        <div class="slds-align_absolute-center" style="font-size: x-large;font-weight: 700;background: aquamarine;">
+            Edit Profile
+        </div>
+        <br/>
+        <lightning-input label="Name" value={firstname} placeholder={user.Name}  data-key = "FirstName" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+        <lightning-input label="Last Name"  placeholder={user.LastName__c} value={lastname} data-key = "LastName" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+        <lightning-input label="Email ID" placeholder={user.Email_Id__c}  value={Email} data-key = "Email" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+        <lightning-input label="Phone Number" placeholder={user.Contact__c} value={Contact} data-key = "Contact" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+       
+        <lightning-layout  horizontal-align="space">
+            <lightning-layout-item>
+        <lightning-button label="Edit" variant="Brand" onclick={handleEdit}> </lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="Cancel" variant="Neutral" onclick={handleCancel}> </lightning-button>
+            </lightning-layout-item>
+        
+        </lightning-layout>
+        </form>
+        </div>
+</template>

@@ -1,0 +1,65 @@
+.container {
+   
+    border-radius: 5px;
+    background-color: white;
+    margin:5px;
+    padding: 2px;
+    max-width: 202px;
+    display: flex;
+    transition: transform .2s;
+    
+    
+}
+
+.container:hover {
+    transform: scale(1.2);
+}
+.roww{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap
+}
+.adjustbutton{
+    margin-left: 75%;
+}
+.scroll { 
+    margin:4px, 4px; 
+    padding:4px; 
+    background-color: rgb(255, 183, 93);
+    width: 100%; 
+    height: 220px; 
+    overflow-x: hidden; 
+    overflow-x: auto; 
+    text-align:justify; 
+} 
+    
+
+
+.title {
+    font-weight: 900;
+    font-size: medium;
+    color: black;
+}
+
+.product-img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: rgb(159, 159, 159);
+}
+a:visited {
+    color: green;
+}
+a:hover {
+    color: rgb(10, 1, 5);
+    
+
+}
+a:active {
+    color: blue;
+}

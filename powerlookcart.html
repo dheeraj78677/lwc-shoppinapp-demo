@@ -1,0 +1,99 @@
+<template>
+    <div class="slds-box">
+    <div class="container">
+        <a onclick={tileClick}>
+            
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item>
+                    <img class="product-img" src={product.Product__r.product_main_image__c}></img>
+                </lightning-layout-item>
+                <lightning-layout-item style="padding-left: 2rem;">
+                    <div class="title slds-align_absolute-center">{product.Product__r.Name}</div>
+                    <br/>
+                    <div >
+                        <span class="title ">
+                            Rs. {product.Product__r.discounted_price__c}
+                        </span>
+                        <span style="font-size: large;color: gray;text-decoration: line-through;padding-left: 0.5rem;">
+                            Rs. {product.Product__r.Actual_Price__c}
+                        </span>
+                        <span class="title" style="color:green;padding-left: 0.5rem;">
+                            ({product.Product__r.discount__c}% OFF)
+                        </span>
+                    </div>
+                    <br/>
+
+                    <template if:false={inputoutput}>
+                        <div class="title">
+                            SIZE : {product.Size__c}
+                        </div>
+                        <div class="title">
+                            QUANTITY : {product.Quantity__c}
+                        </div>
+                        <br/>
+                    <div>
+                        <lightning-layout  horizontal-align="normal">
+                            <lightning-layout-item>
+                        <lightning-button label="Edit" variant="Brand" onclick={handleEdit}> </lightning-button>
+                        </lightning-layout-item>
+                        <lightning-layout-item style="padding-left: 3rem;">
+                           <lightning-button label="Remove" variant="Brand" onclick={handleRemove}> </lightning-button>
+                        </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                    </template>
+                    
+                    <template if:true={inputoutput}>
+                        <div class="title1">
+                            Select Size 
+                        </div>                    
+                        <div class="slds-select_container" style="max-width:150px;">
+                            <select class="slds-select" 
+                                    onchange={selectionChangeHandler} >
+                                   
+                                <option value="Select">Select</option>
+                               
+                                    <option  class="uiInputSelectOption" value="Small">Small</option>
+                                    <option  class="uiInputSelectOption" value="Medium">Medium</option>
+                                    <option  class="uiInputSelectOption" value="Large">Large</option>
+                                    <option  class="uiInputSelectOption" value="Extra Large">Extra Large</option>
+                                
+                            </select>
+                        </div>
+                        <br/>
+                        <div class="title1">
+                            Select Quantity 
+                        </div>
+                        <div  class="title1" >
+                            <lightning-slider label=" " class= "title" size="small" onchange={handleChange} max=10 min=1 default=1>
+                
+                            </lightning-slider>
+                        </div>
+                        <br/>
+                    <div>
+                        <lightning-layout  horizontal-align="normal">
+                            <lightning-layout-item>
+                        <lightning-button label="Save" variant="Brand" onclick={handleSave}> </lightning-button>
+                        </lightning-layout-item>
+                        <lightning-layout-item style="padding-left: 3rem;">
+                           <lightning-button label="Cancel" variant="Brand" onclick={handleCancel}> </lightning-button>
+                        </lightning-layout-item>
+                        </lightning-layout>
+                    </div>
+                    </template>
+                    
+                </lightning-layout-item>
+
+            </lightning-layout>
+          
+         
+      
+
+        </a>
+    </div>
+</div>
+
+
+   
+  
+</template>

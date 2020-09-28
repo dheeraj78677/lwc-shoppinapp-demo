@@ -1,0 +1,23 @@
+<template>
+    <div class="container">
+        <a onclick={tileClick}>
+           
+            <img class="product-img" src={product.product_main_image__c}></img>
+            <div class="title slds-align_absolute-center">{product.Name}</div>
+            <div >
+                <span class="title ">
+                    Rs. {product.discounted_price__c}
+                </span>
+                <span style="color: gray;text-decoration: line-through;padding-left: 0.5rem;">
+                    Rs. {product.Actual_Price__c}
+                </span>
+                <span class="title" style="color:green;padding-left: 0.5rem;">
+                    ({product.discount__c}% OFF)
+                </span>
+            </div>
+           
+        </a>
+    </div>
+   
+  
+</template>

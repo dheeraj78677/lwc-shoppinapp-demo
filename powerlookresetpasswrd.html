@@ -1,0 +1,30 @@
+<template>
+    <div class="slds-box slds-box_xx-small  slds-align_absolute-center slds-p-around_large">
+        <form>
+        <div class="slds-align_absolute-center" style="font-size: x-large;font-weight: 700;background: aquamarine;">
+           Reset Password
+        </div>
+        <br/>
+        <lightning-input label="Enter Email ID" value={Email} data-key = "Email" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+        
+        <lightning-input label="Phone Number"  value={Contact} data-key = "Contact" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+        <lightning-input label="Enter Password" type= "password" value={Password} data-key = "Password" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+        <lightning-input label="Confirm Password"  type="password" value={Confrimpassword} data-key = "Confirm Password" onchange = {registervlue} style="font-size:18px;font-weight:900;font-style: italic;max-width:300px"></lightning-input>
+        <br/>
+       
+        <lightning-layout  horizontal-align="space">
+            <lightning-layout-item>
+        <lightning-button label="Reset Password" variant="Brand" onclick={handleEdit}> </lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="Cancel" variant="Neutral" onclick={handleCancel}> </lightning-button>
+            </lightning-layout-item>
+        
+        </lightning-layout>
+        </form>
+        </div>
+</template>
+
